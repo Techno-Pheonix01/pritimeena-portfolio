@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pritimeena TV | Portfolio</title>
+
+  <style>
+    :root {
+      --bg: #020617;              /* very dark */
+      --card: #020617;
+      --neon-blue: #38bdf8;
+      --neon-yellow: #facc15;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: rgba(148,163,184,0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, #0f172a 0, var(--bg) 55%, #000 100%);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    .frame {
+      width: 100%;
+      max-width: 1200px;
+      padding: 2px;
+      border-radius: 32px;
+      background: linear-gradient(
+        135deg,
+        rgba(56,189,248,0.35),
+        rgba(250,204,21,0.35)
+      );
+      box-shadow:
+        0 0 40px rgba(56,189,248,0.45),
+        0 0 70px rgba(250,204,21,0.25);
+      transform: perspective(1100px) rotateX(10deg);
+      transform-style: preserve-3d;
+      animation: float 7s ease-in-out infinite alternate;
+    }
+
+    .card {
+      background: radial-gradient(circle at top left,#020617,#020617 45%,#000);
+      border-radius: 30px;
+      padding: 26px 30px 34px;
+      backdrop-filter: blur(24px);
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
+      gap: 28px;
+    }
+
+    /* --------------- HERO --------------- */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--neon-blue);
+    }
+
+    .tag-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--neon-yellow);
+      box-shadow: 0 0 14px var(--neon-yellow);
+    }
+
+    h1 {
+      margin-top: 12px;
+      font-size: clamp(32px, 4vw, 42px);
+      line-height: 1.1;
+    }
+
+    h1 span {
+      color: var(--neon-blue);
+      text-shadow:
+        0 0 12px rgba(56,189,248,0.95),
+        0 0 30px rgba(56,189,248,0.8);
+    }
+
+    /* PHOTO under heading */
+    .photo-under-heading {
+      margin-top: 18px;
+      margin-bottom: 18px;
+      display: flex;
+      justify-content: flex-start; /* use center if you want it centered */
+    }
+
+    .photo-frame {
+      width: 140px;
+      height: 140px;
+      border-radius: 999px;
+      padding: 4px;
+      background:
+        conic-gradient(
+          from 210deg,
+          var(--neon-blue),
+          var(--neon-yellow),
+          var(--neon-blue)
+        );
+      box-shadow:
+        0 0 25px rgba(56,189,248,0.9),
+        0 0 30px rgba(250,204,21,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 3px solid #020617;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 34rem;
+    }
+
+    .meta {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #cbd5f5;
+    }
+
+    .meta span {
+      color: var(--neon-yellow);
+    }
+
+    .actions {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      border-color: transparent;
+      background: radial-gradient(circle at top left,var(--neon-blue),var(--neon-yellow));
+      color: #020617;
+      box-shadow:
+        0 0 18px rgba(56,189,248,0.9),
+        0 0 26px rgba(250,204,21,0.7);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--neon-blue);
+      color: var(--neon-blue);
+    }
+
+    .section-title {
+      margin-top: 26px;
+      margin-bottom: 10px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: rgba(15,23,42,0.9);
+      font-size: 11px;
+      color: #e5e7eb;
+    }
+
+    .pill.glow {
+      border-color: rgba(56,189,248,0.9);
+      box-shadow: 0 0 14px rgba(56,189,248,0.8);
+    }
+
+    .pill.yellow {
+      border-color: rgba(250,204,21,0.9);
+      color: var(--neon-yellow);
+      box-shadow: 0 0 14px rgba(250,204,21,0.8);
+    }
+
+    /* --------------- RIGHT COLUMN --------------- */
+    .right-col {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      justify-content: space-between;
+    }
+
+    .glass {
+      border-radius: 22px;
+      padding: 16px 18px 16px;
+      background:
+        radial-gradient(circle at top left,rgba(56,189,248,0.2),rgba(2,6,23,0.95));
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 35px rgba(15,23,42,0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass::before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background:conic-gradient(
+        from 220deg,
+        transparent,
+        rgba(56,189,248,0.6),
+        rgba(250,204,21,0.6),
+        transparent
+      );
+      opacity:0.18;
+      mix-blend-mode:screen;
+      animation: spin 22s linear infinite;
+    }
+    .glass-inner{position:relative; z-index:1;}
+
+    .glass-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .glass-sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .glass-body {
+      font-size: 12px;
+      color: #d1d5db;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(250,204,21,0.85);
+      font-size: 11px;
+      color: var(--neon-yellow);
+      background: rgba(23,23,23,0.9);
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--neon-yellow);
+      box-shadow: 0 0 12px var(--neon-yellow);
+    }
+
+    .contact {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .contact a {
+      color: var(--neon-blue);
+      text-decoration: none;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    .achievements-list {
+      font-size: 12px;
+      color: #e5e7eb;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .achievements-list li::before {
+      content: "★ ";
+      color: var(--neon-yellow);
+    }
+
+    /* --------------- ABOUT SECTION --------------- */
+    .about {
+      margin-top: 22px;
+      font-size: 13px;
+      color: #d1d5db;
+      max-width: 40rem;
+    }
+
+    .about strong {
+      color: var(--neon-blue);
+    }
+
+    /* ANIMATIONS */
+    @keyframes float {
+      to {
+        transform: perspective(1100px) rotateX(5deg) translateY(-10px);
+      }
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 900px) {
+      body {
+        padding: 18px 10px;
+      }
+      .frame {
+        transform: none;
+        animation: none;
+      }
+      .card {
+        grid-template-columns: 1fr;
+        padding: 22px 18px 26px;
+      }
+      .photo-under-heading {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="frame">
+    <main class="card">
+
+      <!-- LEFT: HERO + PHOTO + ABOUT + SKILLS -->
+      <section>
+        <div class="tag">
+          <span class="tag-dot"></span>
+          PORTFOLIO • PRITIMEENA TV
+        </div>
+
+        <h1>
+          
+        </h1>
+
+        <!-- Your photo under the portfolio heading -->
+        <div class="photo-under-heading">
+          <div class="photo-frame">
+            <!-- Make sure this file name matches your image file -->
+            <img src="Image/priti-profile.jpg" alt="Pritimeena TV" />
+          </div>
+        </div>
+
+        <p class="subtitle">
+          I’m <strong>Pritimeena TV</strong>, a second‑year Computer Science and
+          Engineering student at Easwari Engineering College, Ramapuram,
+          Chennai. I love turning ideas into clean, modern interfaces and
+          exploring new technologies.
+        </p>
+
+        <p class="meta">
+          Focus: <span>Java</span>, front‑end development, UI design, and
+          continuous learning.
+        </p>
+
+        <div class="actions">
+          <button class="btn btn-primary">View Projects</button>
+          <button class="btn btn-outline">Download Resume</button>
+        </div>
+
+        <div class="section-title">Skills</div>
+        <div class="pills">
+          <span class="pill glow">Java</span>
+          <span class="pill">HTML</span>
+          <span class="pill">CSS</span>
+          <span class="pill">JavaScript</span>
+          <span class="pill yellow">UI Design (Figma)</span>
+          <span class="pill">Problem Solving</span>
+          <span class="pill">Teamwork</span>
+          <span class="pill">Adaptability</span>
+        </div>
+
+        <div class="section-title">About Me</div>
+        <p class="about">
+          I am an aspiring student with a strong passion for exploration,
+          adventure, and continuous learning. With a keen interest in coding,
+          particularly in <strong>Java</strong>, I consistently maintain good
+          academic performance while pursuing my love for technology.
+          I believe in working both smart and hard, adapting to challenges with
+          flexibility and determination. My curiosity drives me to seek new
+          experiences, while my persistence ensures I deliver results with
+          efficiency and creativity.
+        </p>
+      </section>
+
+      <!-- RIGHT: PROJECTS + ACHIEVEMENTS + CONTACT -->
+      <aside class="right-col">
+        <!-- Weather App -->
+        <div class="glass">
+          <div class="glass-inner">
+            <div class="glass-title">Weather App</div>
+            <div class="glass-sub">HTML · CSS · JavaScript</div>
+            <p class="glass-body">
+              A clean, responsive weather web app where users can search for a
+              city and instantly see the current weather. Designed with a soft,
+              glassmorphism UI that keeps the focus on the forecast.
+            </p>
+            <div class="badge">
+              <span class="badge-dot"></span>
+              Featured Front‑end Project
+            </div>
+          </div>
+        </div>
+
+        <!-- Travel Spire -->
+        <div class="glass">
+          <div class="glass-inner">
+            <div class="glass-title">Travel Spire Landing Page</div>
+            <div class="glass-sub">Tourist app concept · Figma</div>
+            <p class="glass-body">
+              A vibrant landing page for a travel app, showcasing iconic
+              landmarks and a strong call to action. Built in Figma with focus
+              on storytelling visuals, hierarchy, and user‑friendly layout.
+            </p>
+            <div class="badge">
+              <span class="badge-dot"></span>
+              UI/UX Design Showcase
+            </div>
+          </div>
+        </div>
+
+        <!-- Achievements -->
+        <div class="glass">
+          <div class="glass-inner">
+            <div class="glass-title">Achievements</div>
+            <ul class="achievements-list">
+              <li>
+                Secured <strong>First Place</strong> in
+                <strong>“Quiz to Bash”</strong> at
+                <strong>SPARTANZ 2.0</strong>, a National Level Technical
+                Symposium conducted by the Department of Computer Science and
+                Engineering (Cyber Security), New Prince Shri Bhavani College
+                of Engineering and Technology, Chennai.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Contact + Links -->
+        <div class="glass">
+          <div class="glass-inner">
+            <div class="glass-title">Let’s Connect</div>
+            <p class="glass-body">
+              Open to internships, hackathons, and exciting collaborations in
+              web development and UI design.
+            </p>
+            <p class="contact">
+              Phone: <strong>7200672848</strong><br />
+              Email:
+              <a href="mailto:pritimeena01042007@gmail.com">
+                pritimeena01042007@gmail.com
+              </a><br />
+              LinkedIn:
+              <a href="https://www.linkedin.com/in/priti-meena" target="_blank">
+                priti-meena
+              </a><br />
+              GitHub:
+              <a href="https://github.com/Techno-Pheonix01" target="_blank">
+                Techno-Pheonix01
+              </a><br />
+              LeetCode:
+              <a href="https://leetcode.com/u/Pritimeena_05/" target="_blank">
+                Pritimeena_05
+              </a>
+            </p>
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+</body>
+</html>
